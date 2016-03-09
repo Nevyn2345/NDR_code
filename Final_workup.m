@@ -1,9 +1,18 @@
 %Final version 0.1
 
+[filename, Path] = uigetfile('*.tsm');
+file = strcat(Path,filename);
+fileID = fopen(file);
+fseek(fileID, 266, 'bof');
+height = char(fread(fileID,4, 'uint8',0,'ieee-le'));
+height = str2num(strcat(height'));
+fseek(fileID, 347, 'bof');
+width = char(fread(fileID,4, 'uint8',0,'ieee-le'));
+width = str2num(strcat(width'));
+fclose(fileID);
+
 clear
 level=40;
-height=180;
-width=2048;
 cut_size = 5;
 threshold = 35;
 blink_store = [];
@@ -12,18 +21,17 @@ frames_found = [];
 cut = [];
 blink=zeros((cut_size*2)+1,(cut_size*2)+1,1);
 
-[filename, Path] = uigetfile('*.tsm');
-file = strcat(Path,filename);
+
 
 [chunk_pos] = NDR_DefineResets( file ); % load beginning of file, find resets, returns list of reset locations
 disp(['Loaded in ', int2str(size(chunk_pos,1)), ' chunks'])
 
-for i = 1:size(chunk_pos,1)-1 %-1 because last chunk is also not a full chunk
+for i = 1:3%size(chunk_pos,1)-1 %-1 because last chunk is also not a full chunk
     disp(i);
     chunk = NDR_LoadData( file, chunk_pos(i,2), chunk_pos(i+1,2));
+ %   [chunk ] = NDR_normalising( chunk );
     stout = NDR_STDDEV( chunk, height, width );
     [ cleaned_image ] = NDR_Select_points( stout, 1, 4 );
-    
     [ holdall ] = NDR_select_possible_events( cleaned_image, level, i);
     
     if size(holdall,1) > 0
