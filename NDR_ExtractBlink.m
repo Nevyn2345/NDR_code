@@ -11,6 +11,7 @@ indexoff = indexoff(2:end);
 if size(indexon,1) > size(indexoff,1)
     indexoff(end+1) = size(cut,3);
 end
+
 if length(indexon) > length(indexoff)
     indexoff(end+1) = size(cut,3);
 end

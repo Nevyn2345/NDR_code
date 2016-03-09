@@ -1,6 +1,0 @@
-TO DO:
-
-Script for working out when a pixel turns on from the trace (Breakpoint analysis?)
-Look at pixel stats of for area illuminated by laser (but doesn't have sample)
-Fix issue with chunking, doesn't seem to be getting the reset frame right
-Take the trace of a 3x3 area around the central pixel

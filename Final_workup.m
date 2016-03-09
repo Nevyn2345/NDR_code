@@ -1,4 +1,5 @@
 %Final version 0.1
+clear
 
 [filename, Path] = uigetfile('*.tsm');
 file = strcat(Path,filename);
@@ -11,7 +12,6 @@ width = char(fread(fileID,4, 'uint8',0,'ieee-le'));
 width = str2num(strcat(width'));
 fclose(fileID);
 
-clear
 level=40;
 cut_size = 5;
 threshold = 35;
@@ -20,8 +20,6 @@ bounding_box = [];
 frames_found = [];
 cut = [];
 blink=zeros((cut_size*2)+1,(cut_size*2)+1,1);
-
-
 
 [chunk_pos] = NDR_DefineResets( file ); % load beginning of file, find resets, returns list of reset locations
 disp(['Loaded in ', int2str(size(chunk_pos,1)), ' chunks'])
