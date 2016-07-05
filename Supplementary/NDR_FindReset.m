@@ -28,7 +28,7 @@ hold on
 plot(resets, m(resets), 'ro')
 
 frames = frames(:,:,resets(2):end); %Lose the beginning chunk otherwise they won't be the same size
-if size(resets,2) > 3
+if size(resets,2) > 2
     disp([int2str(resets(2)), ' frames dropped to first reset']);
     reset_freq = resets(3) - resets(2);
     fileInfo.frequency = reset_freq;
@@ -40,6 +40,7 @@ if size(resets,2) > 3
     end
 else
     disp(['ERROR: Not enough resets found!'])
+    error('ERROR: Not enough resets found!')
     return
 end
 

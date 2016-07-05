@@ -1,1 +1,9 @@
 *.asv
+*.mat
+*.csv
+*.tif
+*.TIFF
+*.txt
+*.tsm
+Paper_gubbins/
+data/

@@ -3,7 +3,7 @@ function [ resets, fileInfo ] = NDR_DefineResets( filename, fileInfo )
 %   Detailed explanation goes here
 
 Start_frame=1;
-End_frame=300;
+End_frame=1000;
 index=1;
 
 test = zeros(fileInfo.height, fileInfo.width, End_frame);
